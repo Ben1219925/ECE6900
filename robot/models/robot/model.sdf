@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<sdf version="1.6">
+  <model name="marble_hd2_visuals_only">
+    <static>true</static>
+    <link name="base_link">
+      <visual name= "Body_visual">
+        <geometry>
+          <mesh>
+            <uri>package://robot/models/robot/meshes/tank.dae</uri>
+            <scale> .5 .5 .5 </scale>
+            <submesh>
+              <name>Body</name>
+              <center>false</center>
+            </submesh>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1.0 1.0 1.0</diffuse>
+          <specular>1.0 1.0 1.0</specular>
+          <pbr>
+            <metal>
+              <albedo_map>package://robot/models/robot/materials/textures/HD2_Albedo.jpg</albedo_map>
+              <metal_map>package://robot/models/robot/materials/textures/HD2_Metalness.jpg</metal_map>
+              <roughness_map>package://robot/models/robot/materials/textures/HD2_Roughness.jpg</roughness_map>
+            </metal>
+          </pbr>
+          <!-- fallback to script if no PBR support-->
+          <script>
+            <uri>package://robot/models/robot/materials/scripts/</uri>
+            <uri>package://robot/models/robot/materials/textures/</uri>
+            <name>UrbanTile/HD2_Diffuse</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+  </model>
+</sdf>

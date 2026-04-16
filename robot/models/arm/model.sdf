@@ -1,0 +1,586 @@
+<?xml version="1.0"?>
+<sdf version="1.7">
+  <model name="tank_with_arm">
+    <static>false</static>
+    
+    <link name="base_link"> 
+    <pose> 0 0 0 0 0 -1.5707</pose>
+      <visual name= "Body_visual"> 
+        <pose> 0 0 0 0 0 -1.5707 </pose>
+          <geometry>
+          <mesh>
+            <uri>package://robot/models/robot/meshes/tank.dae</uri>
+            <scale>0.032 0.022 0.022</scale>
+            <submesh>
+              <name>Body</name>
+              <center>false</center> [cite: 1, 2]
+            </submesh>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+
+    <link name='base_footprint'>
+        <pose relative_to='base_link'>0 0 0 0 0 0</pose>
+    </link>
+    
+    <joint name='base_footprint_joint' type='fixed'>
+        <parent>base_link</parent>
+        <child>base_footprint</child>
+    </joint>
+    
+    <link name="arm_mount_link"/>
+
+    <joint name="arm_mount_joint" type="fixed">
+      <parent>base_link</parent>
+      <child>arm_mount_link</child>
+      <pose>0 0.1 0.03 0 0 1.5707</pose>
+    </joint>
+
+    <joint name="arm_base_joint" type="fixed">
+      <parent>arm_mount_link</parent>
+      <child>panda_link0</child>
+      <pose>0 0 0 0 0 0</pose>
+    </joint>
+
+    <link name="panda_link0">
+      <pose relative_to="arm_mount_joint">0 0 0 0 0 0</pose> [cite: 10, 11]
+      <visual name="panda_link0_visual">
+        <geometry>
+          <mesh>
+            <uri>package://robot/models/arm/meshes/visual/link0.dae</uri> [cite: 5]
+            <scale>0.3 0.3 0.3</scale>
+          </mesh>
+        </geometry>
+      </visual>
+      <collision name="panda_link0_collision">
+          <geometry>
+              <mesh>
+                  <uri>package://robot/models/arm/meshes/collision/link0.stl</uri> [cite: 7]
+                  <scale>0.3 0.3 0.3</scale>
+              </mesh>
+          </geometry>
+      </collision>
+    </link>
+    <link name="shoulder_link">
+        <pose relative_to="shoulder_joint">0 0 0 0 0 0</pose> [cite: 10, 11]
+        <visual name="shoulder_link_visual">
+            <geometry>
+                <mesh>
+                    <uri>package://robot/models/arm/meshes/visual/link1.dae</uri> [cite: 11]
+                    <scale>0.3 0.3 0.3</scale>
+                </mesh>
+            </geometry>
+        </visual>
+        <collision name="shoulder_link_collision">
+            <geometry>
+                <mesh>
+                     <uri>package://robot/models/arm/meshes/collision/link1.stl</uri> [cite: 14]
+                     <scale>0.3 0.3 0.3</scale>
+                </mesh>
+            </geometry>
+        </collision>
+    </link>
+    <link name="elbow_link">
+        <pose relative_to="elbow_joint">0 0 0 0 0 0</pose> [cite: 17]
+        <visual name="elbow_link_visual">
+            <geometry>
+                 <mesh>
+                    <uri>package://robot/models/arm/meshes/visual/link2.dae</uri> [cite: 18]
+                    <scale>0.3 0.3 0.3</scale>
+                </mesh>
+            </geometry>
+        </visual>
+        <collision name="elbow_link_collision">
+            <geometry>
+                <mesh>
+                    <uri>package://robot/models/arm/meshes/collision/link2.stl</uri> [cite: 20]
+                    <scale>0.3 0.3 0.3</scale>
+                </mesh>
+             </geometry>
+        </collision>
+    </link>
+    <link name="panda_link3">
+        <pose relative_to="panda_joint3">0 0 0 0 0 0</pose> [cite: 24]
+        <visual name="panda_link3_visual">
+            <geometry>
+                <mesh>
+                     <uri>package://robot/models/arm/meshes/visual/link3.dae</uri> [cite: 25]
+                     <scale>0.3 0.3 0.3</scale>
+                </mesh>
+            </geometry>
+        </visual>
+         <collision name="panda_link3_collision">
+            <geometry>
+                <mesh>
+                    <uri>package://robot/models/arm/meshes/collision/link3.stl</uri> [cite: 27]
+                    <scale>0.3 0.3 0.3</scale>
+                </mesh>
+            </geometry>
+        </collision>
+    </link>
+    <link name="wrist_link">
+        <pose relative_to="wrist_joint">0 0 0 0 0 0</pose> [cite: 31]
+        <visual name="wrist_link_visual">
+            <geometry>
+                <mesh>
+                    <uri>package://robot/models/arm/meshes/visual/link4.dae</uri> [cite: 31]
+                    <scale>0.3 0.3 0.3</scale>
+                </mesh>
+             </geometry>
+        </visual>
+        <collision name="wrist_link_collision">
+            <geometry>
+                 <mesh>
+                    <uri>package://robot/models/arm/meshes/collision/link4.stl</uri> [cite: 34]
+                    <scale>0.3 0.3 0.3</scale>
+                </mesh>
+            </geometry>
+        </collision>
+    </link>
+    <link name="panda_link5">
+        <pose relative_to="panda_joint5">0 0 0 0 0 0</pose> [cite: 37]
+         <visual name="panda_link5_visual">
+            <geometry>
+                <mesh>
+                    <uri>package://robot/models/arm/meshes/visual/link5.dae</uri> [cite: 38]
+                    <scale>0.3 0.3 0.3</scale>
+                </mesh>
+            </geometry>
+        </visual>
+        <collision name="panda_link5_collision">
+            <geometry>
+                <mesh>
+                     <uri>package://robot/models/arm/meshes/collision/link5.stl</uri> [cite: 41]
+                     <scale>0.3 0.3 0.3</scale>
+                </mesh>
+            </geometry>
+        </collision>
+    </link>
+    <link name="gripper_link">
+        <pose relative_to="gripper_joint">0 0 0 0 0 0</pose> [cite: 44]
+        <visual name="gripper_link_visual">
+            <geometry>
+                 <mesh>
+                    <uri>package://robot/models/arm/meshes/visual/link6.dae</uri> [cite: 45]
+                    <scale>0.3 0.3 0.3</scale>
+                </mesh>
+            </geometry>
+        </visual>
+        <collision name="gripper_link_collision">
+            <geometry>
+                <mesh>
+                    <uri>package://robot/models/arm/meshes/collision/link6.stl</uri> [cite: 47]
+                    <scale>0.3 0.3 0.3</scale>
+                </mesh>
+             </geometry>
+        </collision>
+    </link>
+    <link name="panda_link7">
+        <pose relative_to="panda_joint7">0 0 0 0 0 0</pose> [cite: 51]
+        <visual name="panda_link7_visual">
+            <geometry>
+                <mesh>
+                    <uri>package://robot/models/arm/meshes/visual/link7.dae</uri> [cite: 51]
+                    <scale>0.3 0.3 0.3</scale>
+                 </mesh>
+            </geometry>
+        </visual>
+        <collision name="panda_link7_collision">
+             <geometry>
+                <mesh>
+                    <uri>package://robot/models/arm/meshes/collision/link7.stl</uri> [cite: 54]
+                    <scale>0.3 0.3 0.3</scale>
+                </mesh>
+            </geometry>
+        </collision>
+    </link>
+    <link name="panda_hand">
+      <pose relative_to="panda_hand_joint">0 0 0 0 0 0</pose> [cite: 75]
+       <visual name="panda_hand_visual">
+        <pose>0 0 0 0 0 0</pose> [cite: 76]
+        <geometry>
+          <mesh>
+            <uri>package://robot/models/arm/meshes/visual/hand.dae</uri> [cite: 76]
+            <scale>0.3 0.3 0.3</scale>
+          </mesh>
+        </geometry>
+        </visual>
+        <collision name="panda_hand_collision">
+          <pose>0 0 0 0 0 0</pose> [cite: 78]
+          <geometry>
+            <mesh>
+              <uri>package://robot/models/arm/meshes/collision/hand.stl</uri> [cite: 78]
+              <scale>0.3 0.3 0.3</scale>
+             </mesh>
+          </geometry>
+        </collision>
+    </link>
+    <link name="left_finger">
+        <pose relative_to="left_finger_joint">0 0 0 0 0 0</pose> [cite: 82]
+        <visual name="left_finger_visual">
+            <geometry>
+                <mesh>
+                    <uri>package://robot/models/arm/meshes/visual/finger.dae</uri> [cite: 82]
+                    <scale>0.3 0.3 0.3</scale>
+                 </mesh>
+            </geometry>
+        </visual>
+        <collision name="left_finger_collision">
+             <geometry>
+                <mesh>
+                    <uri>package://robot/models/arm/meshes/collision/finger.stl</uri> [cite: 85]
+                    <scale>0.3 0.3 0.3</scale>
+                </mesh>
+            </geometry>
+        </collision>
+    </link>
+    <link name="right_finger">
+         <pose relative_to="right_finger_joint">0 0 0 0 0 0</pose> [cite: 89]
+        <visual name="right_finger_visual">
+            <pose>0 0 0 0 0 3.141592653589793</pose> [cite: 89]
+            <geometry>
+                <mesh>
+                    <uri>package://robot/models/arm/meshes/visual/finger.dae</uri> [cite: 89]
+                    <scale>0.3 0.3 0.3</scale>
+                </mesh>
+             </geometry>
+        </visual>
+        <collision name="right_finger_collision">
+            <pose>0 0 0 0 0 3.141592653589793</pose> [cite: 91]
+             <geometry>
+                <mesh>
+                    <uri>package://robot/models/arm/meshes/collision/finger.stl</uri> [cite: 92]
+                    <scale>0.3 0.3 0.3</scale>
+                </mesh>
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="shoulder_joint" type="revolute">
+        <pose relative_to="panda_link0">0 0 0.0999 0 0 0</pose>
+        <parent>panda_link0</parent>
+        <child>shoulder_link</child>
+        <axis>
+            <xyz>0 0 1</xyz> 
+            <limit>
+                <effort>87</effort> 
+                 <lower>-2.897246558310587</lower> [cite: 59]
+                <upper>2.897246558310587</upper> [cite: 59]
+                <velocity>2.617993877991494</velocity> [cite: 59]
+            </limit>
+            <dynamics>
+                <spring_reference>0</spring_reference> [cite: 59]
+                <spring_stiffness>0</spring_stiffness> [cite: 59]
+                 <damping>21.75</damping> [cite: 60]
+                <friction>3.48</friction> [cite: 60]
+            </dynamics>
+        </axis>
+    </joint>
+    <joint name="elbow_joint" type="revolute">
+        <pose relative_to="shoulder_link">0 0 0 -1.570796326794897 0 0</pose>
+        <parent>shoulder_link</parent>
+        <child>elbow_link</child>
+        <axis>
+             <xyz>0 0 1</xyz> [cite: 61]
+            <limit>
+                <effort>87</effort> [cite: 61]
+                <lower>-1.762782544514273</lower> [cite: 61]
+                <upper>1.762782544514273</upper> [cite: 61]
+                <velocity>2.617993877991494</velocity> [cite: 61]
+            </limit>
+             <dynamics>
+                <spring_reference>0</spring_reference> [cite: 62]
+                <spring_stiffness>0</spring_stiffness> [cite: 62]
+                <damping>21.75</damping> [cite: 62]
+                <friction>3.48</friction> [cite: 62]
+            </dynamics>
+        </axis>
+    </joint>
+    <joint name="panda_joint3" type="fixed">
+        <pose relative_to="elbow_link">0 -0.0948 0 1.570796326794897 0 0</pose>
+        <parent>elbow_link</parent>
+        <child>panda_link3</child>
+        <axis>
+            <xyz>0 0 1</xyz> [cite: 63]
+            <limit>
+                <effort>87</effort> [cite: 63]
+                <lower>-1.5</lower> [cite: 63]
+                 <upper>1.5</upper> [cite: 64]
+                <velocity>2.617993877991494</velocity> [cite: 64]
+            </limit>
+            <dynamics>
+                <spring_reference>0</spring_reference> [cite: 64]
+                <spring_stiffness>0</spring_stiffness> [cite: 64]
+                 <damping>21.75</damping> [cite: 65]
+                <friction>3.48</friction> [cite: 65]
+            </dynamics>
+        </axis>
+    </joint>
+    <joint name="wrist_joint" type="revolute">
+        <pose relative_to="panda_link3">0.02475 0 0 1.570796326794897 1.5708 0</pose>
+        <parent>panda_link3</parent>
+        <child>wrist_link</child>
+        <axis>
+            <xyz>0 0 -1</xyz> [cite: 65]
+             <limit>
+                <effort>87</effort> [cite: 66]
+                <lower>-3.07177948351002</lower> [cite: 66]
+                <upper>-0.06981317007977318</upper> [cite: 66]
+                <velocity>2.617993877991494</velocity> [cite: 66]
+            </limit>
+            <dynamics>
+                 <spring_reference>0</spring_reference> [cite: 67]
+                <spring_stiffness>0</spring_stiffness> [cite: 67]
+                <damping>21.75</damping> [cite: 67]
+                <friction>3.48</friction> [cite: 67]
+            </dynamics>
+        </axis>
+    </joint>
+    <joint name="panda_joint5" type="fixed">
+         <pose relative_to="wrist_link">-0.02475 0.1152 0 -1.570796326794897 0 0</pose>
+        <parent>wrist_link</parent>
+        <child>panda_link5</child>
+        <axis>
+            <xyz>0 0 1</xyz> [cite: 68]
+            <limit>
+                <effort>12</effort> [cite: 68]
+                <lower>-2.897246558310587</lower> [cite: 68]
+                 <upper>2.897246558310587</upper> [cite: 69]
+                <velocity>3.141592653589793</velocity> [cite: 69]
+            </limit>
+            <dynamics>
+                <spring_reference>0</spring_reference> [cite: 69]
+                <spring_stiffness>0</spring_stiffness> [cite: 69]
+                <damping>3.0</damping> [cite: 69]
+                 <friction>0.48</friction> [cite: 70]
+            </dynamics>
+        </axis>
+    </joint>
+    <joint name="gripper_joint" type="revolute">
+        <pose relative_to="panda_link5">0 0 0 1.570796326794897 -3.14159265 0</pose>
+        <parent>panda_link5</parent>
+        <child>gripper_link</child>
+        <axis>
+            <xyz>0 0 -1</xyz> [cite: 70]
+             <limit>
+                <effort>12</effort> [cite: 71]
+                <lower>-0.0174532925199433</lower> [cite: 71]
+                <upper>3.752457891787809</upper> [cite: 71]
+                <velocity>3.141592653589793</velocity> [cite: 71]
+            </limit>
+            <dynamics>
+                 <spring_reference>0</spring_reference> [cite: 72]
+                <spring_stiffness>0</spring_stiffness> [cite: 72]
+                <damping>3.0</damping> [cite: 72]
+                <friction>0.48</friction> [cite: 72]
+            </dynamics>
+        </axis>
+    </joint>
+    <joint name="panda_joint7" type="fixed">
+        <pose relative_to="gripper_link">0.0264 0 0 1.570796326794897 0 0</pose>
+         <parent>gripper_link</parent> [cite: 73]
+        <child>panda_link7</child> [cite: 73]
+        <axis>
+            <xyz>0 0 1</xyz> [cite: 73]
+            <limit>
+                <effort>12</effort> [cite: 73]
+                <lower>-2.897246558310587</lower> [cite: 73]
+                <upper>2.897246558310587</upper> [cite: 73]
+                 <velocity>3.141592653589793</velocity> [cite: 74]
+            </limit>
+            <dynamics>
+                <spring_reference>0</spring_reference> [cite: 74]
+                <spring_stiffness>0</spring_stiffness> [cite: 74]
+                <damping>3.0</damping> [cite: 74]
+                 <friction>0.48</friction> [cite: 75]
+            </dynamics>
+        </axis>
+    </joint>
+    <joint name="panda_hand_joint" type="fixed">
+        <pose relative_to="panda_link7">0 0 0.0321 0 0 0</pose>
+        <parent>panda_link7</parent>
+        <child>panda_hand</child>
+    </joint>
+    <joint name="left_finger_joint" type="prismatic">
+        <pose relative_to="panda_hand">0 -0.015 0.0192 0 0 0</pose>
+        <parent>panda_hand</parent>
+        <child>left_finger</child>
+        <axis>
+            <xyz>0 1 0</xyz> [cite: 96]
+            <limit>
+                <effort>20</effort> [cite: 96]
+                 <lower>0.0</lower> [cite: 97]
+                <upper>0.04</upper> [cite: 97]
+                <velocity>0.2</velocity> [cite: 97]
+            </limit>
+            <dynamics>
+                <spring_reference>0</spring_reference> [cite: 97]
+                <spring_stiffness>0</spring_stiffness> [cite: 97]
+                <damping>10</damping> [cite: 98]
+                <friction>0.5</friction> [cite: 98]
+            </dynamics>
+        </axis>
+    </joint>
+    <joint name="right_finger_joint" type="prismatic">
+        <pose relative_to="panda_hand">0 0.015 0.0192 0 0 0</pose>
+        <parent>panda_hand</parent>
+        <child>right_finger</child>
+        <axis>
+             <xyz>0 -1 0</xyz> [cite: 99]
+            <limit>
+                <effort>20</effort> [cite: 99]
+                <lower>0.0</lower> [cite: 99]
+                <upper>0.04</upper> [cite: 99]
+                <velocity>0.2</velocity> [cite: 99]
+            </limit>
+             <dynamics>
+                <spring_reference>0</spring_reference> [cite: 100]
+                <spring_stiffness>0</spring_stiffness> [cite: 100]
+                <damping>10</damping> [cite: 100]
+                <friction>0.5</friction> [cite: 100]
+            </dynamics>
+        </axis>
+    </joint>
+
+    <link name='camera_body'>
+            <pose relative_to="panda_hand">0.02 0 0 0 0 0</pose>
+            <visual name='visual'>
+                <pose>0 0 0 0 0 0</pose>
+                <geometry>
+                    <box>
+                        <size> 0.02 0.07 0.02 </size>
+                    </box>
+                </geometry>
+                <material>
+                    <ambient>0 0 0.1 0.1</ambient>
+                    <diffuse>0 0 0.2 1</diffuse>
+                    <specular>0 0 0.5 1</specular>
+                    <emissive>0 0 0.3 1</emissive>
+                </material>
+            </visual>
+            <collision name='collision'>
+                <pose>0 0 0 0 1.5707 0</pose>
+                <geometry>
+                    <cylinder>
+                        <radius>0.01</radius>
+                        <length>0.01</length>
+                    </cylinder>
+                </geometry>
+            </collision>
+        </link>
+        <link name='camera'>
+            <pose relative_to="camera_body">0.01 0 0 0 0 1.5707</pose>
+        </link>
+        <joint name='camera_joint' type='fixed'>
+            <parent>panda_hand</parent>
+            <child>camera_body</child>
+        </joint>
+        <joint name='camera_optical_joint' type='fixed'>
+            <parent>camera_body</parent>
+            <child>camera</child>
+        </joint>
+        
+        <link name='camera_body2'>
+            <pose relative_to="base_link">0.2 0 0.1 0 0 0</pose>
+            <visual name='visual'>
+                <pose>0 0 0 0 0 0</pose>
+                <geometry>
+                    <box>
+                        <size> 0.02 0.07 0.02 </size>
+                    </box>
+                </geometry>
+                <material>
+                    <ambient>0 0 0.1 0.1</ambient>
+                    <diffuse>0 0 0.2 1</diffuse>
+                    <specular>0 0 0.5 1</specular>
+                    <emissive>0 0 0.3 1</emissive>
+                </material>
+            </visual>
+            <collision name='collision'>
+                <pose>0 0 0 0 1.5707 0</pose>
+                <geometry>
+                    <cylinder>
+                        <radius>0.01</radius>
+                        <length>0.01</length>
+                    </cylinder>
+                </geometry>
+            </collision>
+        </link>
+        <link name='camera2'>
+            <pose relative_to="camera_body2">0.01 0 0 -1.5707 0 -1.5707</pose>
+        </link>
+        <joint name='camera_joint2' type='fixed'>
+            <parent>base_link</parent>
+            <child>camera_body2</child>
+        </joint>
+        <joint name='camera_optical_joint2' type='fixed'>
+            <parent>camera_body2</parent>
+            <child>camera2</child>
+        </joint>
+
+        <link name='laser'>
+        <pose relative_to="base_link">0.14 0 0.1 0 0 3.1415</pose>
+            <visual name='visual'>
+                <pose>0 0 0 0 0 0</pose>
+                <geometry>
+                    <cylinder>
+                        <radius>0.04</radius>
+                        <length>0.04</length>
+                    </cylinder>
+                </geometry>
+                <material>
+                    <ambient>0 0 0 0.1</ambient>
+                    <diffuse>0 0 0 1</diffuse>
+                    <specular>0 0 0 1</specular>
+                    <emissive>0 0 0 1</emissive>
+                </material>
+            </visual>
+            <collision name='collision'>
+                <pose>0 0 0 0 0 0</pose>
+                <geometry>
+                    <cylinder>
+                        <radius>0.03</radius>
+                        <length>0.07</length>
+                    </cylinder>
+                </geometry>
+            </collision>
+        </link>
+
+        <joint name='laser_joint' type='fixed'>
+            <parent>base_link</parent>
+            <child>laser</child>
+        </joint>
+
+        <link name='imu'>
+        <pose relative_to="base_link">0 0. 0.1 0 0 0</pose>
+            <visual name='visual'>
+                <pose>0 0 0 0 0 0</pose>
+                <geometry>
+                    <box>
+                        <size> .02 .02 .01 </size>
+                    </box>
+                </geometry>
+                <material>
+                    <ambient>0 0 0 0.1</ambient>
+                    <diffuse>0 0 0 1</diffuse>
+                    <specular>0 0 0 1</specular>
+                    <emissive>0 0 0 1</emissive>
+                </material>
+            </visual>
+            <collision name='collision'>
+                <pose>0 0 0 0 0 0</pose>
+                <geometry>
+                    <box>
+                        <size> .02 .02 .01 </size>
+                    </box>
+                </geometry>
+            </collision>
+        </link>
+        
+        <joint name='imu_joint' type='fixed'>
+            <parent>base_link</parent>
+            <child>imu</child>
+        </joint>
+  </model>
+</sdf>

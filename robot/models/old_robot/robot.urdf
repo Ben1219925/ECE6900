@@ -1,0 +1,17 @@
+<robot name="myfirst">
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://robot/models/robot/meshes/robot.dae" scale="0.1 0.1 0.1"/>
+        <submesh>
+            <name>Body</name>
+            <center>false</center>
+        </submesh>
+      </geometry>
+      <material name="black">
+        <color rgba="0 0 0 1"/>
+      </material>
+    </visual>
+  </link>
+</robot>
+
